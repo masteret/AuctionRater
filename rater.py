@@ -4,17 +4,14 @@ from PIL import Image, ImageTk
 import os
 import shutil
 
+path = ""
+files = []
+count = 0
+
 def rate(i):
-    global count
-    global path
-    global files
-    if not os.path.exists(path + str(i) + "/"):
-        os.makedirs(path + str(i) + "/")
-
     if len(files) <= count:
+        print "All images are processed"
         root.destroy()
-
-    shutil.copy2(path + str(files[count]), path + str(i) + "/" + str(files[count]))
 
     count += 1
 
@@ -59,5 +56,5 @@ if __name__ == "__main__":
     print "please input the image folder path"
     path = raw_input()
     path = os.path.abspath(path)
-    print path
+    files = [x for x in os.listdir(path)]
     build_windows()
