@@ -15,7 +15,6 @@ def get_imgs(path):
 
 def rate(root, i):
     if len(files) > 0:
-        print files[0]
         rating[files[0]] = i
 
         img = ImageTk.PhotoImage(Image.open(files[0]))
@@ -26,7 +25,9 @@ def rate(root, i):
         root.viewer.grid(row=0, column=0, columnspan=5)
         files.remove(files[0])
     else:
-        root.destroy()
+        root.viewer.image = None
+        root.viewer = Label(root, text="You have rated all the images", font=("Helvetica", 36), fg="red")
+        root.viewer.grid(row=0, column=0, columnspan=5)
     return True
 
 def build_windows():
