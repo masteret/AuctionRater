@@ -6,6 +6,13 @@ import shutil
 
 rating = {}
 
+def get_imgs(path):
+    result = []
+    for root, dirs, files in os.walk(path):
+        for image in files:
+            result.append(os.path.join(root, image))
+    return result
+
 def rate(root, i):
     if len(files) > 0:
         print files[0]
@@ -53,5 +60,5 @@ def build_windows():
 
 if __name__ == "__main__":
     path = os.path.abspath(sys.argv[1])
-    files = [os.path.join(path, x) for x in os.listdir(path)]
+    files = get_imgs(path)
     build_windows()
